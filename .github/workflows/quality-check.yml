@@ -1,0 +1,18 @@
+name: Code Quality Shield
+
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  test-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Stage 1 - Download Code
+        uses: actions/checkout@v4
+
+      - name: Stage 2 - Install HTML Validator
+        run: npm install -g html-validator-cli
+
+      - name: Stage 3 - Scan for Syntax Errors
+        run: html-validator --file=index.html
